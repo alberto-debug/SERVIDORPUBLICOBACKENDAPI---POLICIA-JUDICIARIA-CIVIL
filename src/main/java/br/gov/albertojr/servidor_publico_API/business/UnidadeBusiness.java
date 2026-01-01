@@ -37,10 +37,11 @@ public class UnidadeBusiness {
         return unidadeRepository.findAll(pageable);
     }
 
-    public void verificarSeTodosOsEnderecosExistem(Unidade unidade) throws EntityDoesNotExistsException {
-        for (Endereco endereco : unidade.getEnderecoList()) {
-            if (enderecoRepository.findById(endereco.getId()).isEmpty()) {
-                throw new EntityDoesNotExistsException(endereco.getId());
+    public void verificarSeTodosOsEnderecosExistem(Unidade unidade)throws EntityDoesNotExistsException{
+
+        for (Endereco endereco : unidade.getEnderecoList()){
+            if (unidadeRepository.findById(unidade.getId()).isPresent()){
+                throw new EntityDoesNotExistsException(unidade.getId());
             }
         }
     }
