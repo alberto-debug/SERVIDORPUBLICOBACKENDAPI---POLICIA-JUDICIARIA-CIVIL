@@ -28,11 +28,17 @@ public class CidadeBusiness {
     }
 
     public Cidade update(Cidade cidade) throws EntityDoesNotExistsException {
-        if (!cidadeRepository.findById(cidade.getId()).isPresent()) {
+        if (cidadeRepository.findById(cidade.getId()).isEmpty()) {
             throw new EntityDoesNotExistsException(cidade.getId());
         }
-
         return cidadeRepository.save(cidade);
+    }
+
+    public void delete(int id) throws EntityDoesNotExistsException {
+        if (cidadeRepository.findById(id).isEmpty()) {
+            throw new EntityDoesNotExistsException(id);
+        }
+        cidadeRepository.deleteById(id);
     }
 
 
