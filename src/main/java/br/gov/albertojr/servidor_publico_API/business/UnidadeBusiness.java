@@ -21,15 +21,19 @@ public class UnidadeBusiness {
     private EnderecoRepository enderecoRepository;
 
 
-    public Unidade add(Unidade unidade) throws EntityAlreadyExistsException{
-
-        if (unidadeRepository.findById(unidade.getId()).isPresent()){
-
+    public Unidade add(Unidade unidade) throws EntityAlreadyExistsException {
+        if (unidadeRepository.findById(unidade.getId()).isPresent()) {
             throw new EntityAlreadyExistsException(unidade.getNome());
         }
-
         verificarSeTodosOsEnderecosExistem(unidade);
+        return unidadeRepository.save(unidade);
+    }
 
+    public Unidade update(Unidade unidade) throws EntityDoesNotExistsException {
+        if (unidadeRepository.findById(unidade.getId()).isEmpty()) {
+            throw new EntityDoesNotExistsException(unidade.getId());
+        }
+        verificarSeTodosOsEnderecosExistem(unidade);
         return unidadeRepository.save(unidade);
     }
 
@@ -37,11 +41,17 @@ public class UnidadeBusiness {
         return unidadeRepository.findAll(pageable);
     }
 
-    public void verificarSeTodosOsEnderecosExistem(Unidade unidade)throws EntityDoesNotExistsException{
+    public void delete(int id) throws EntityDoesNotExistsException {
+        if (unidadeRepository.findById(id).isEmpty()) {
+            throw new EntityDoesNotExistsException(id);
+        }
+        unidadeRepository.deleteById(id);
+    }
 
-        for (Endereco endereco : unidade.getEnderecoList()){
-            if (unidadeRepository.findById(unidade.getId()).isPresent()){
-                throw new EntityDoesNotExistsException(unidade.getId());
+    public void verificarSeTodosOsEnderecosExistem(Unidade unidade) throws EntityDoesNotExistsException {
+        for (Endereco endereco : unidade.getEnderecoList()) {
+            if (enderecoRepository.findById(endereco.getId()).isEmpty()) {
+                throw new EntityDoesNotExistsException(endereco.getId());
             }
         }
     }
