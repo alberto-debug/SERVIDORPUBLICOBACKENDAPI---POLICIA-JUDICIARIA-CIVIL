@@ -19,9 +19,6 @@ public class HomeController {
         response.put("version", "1.0.0");
         response.put("status", "running");
 
-
-
-
         return response;
 
     }
