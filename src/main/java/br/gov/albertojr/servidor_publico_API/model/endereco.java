@@ -16,7 +16,7 @@ public class endereco {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "pes_id")
+    @Column(name = "end_id")
     private int id;
 
     @Column(name = "end_tipo_logradouro")

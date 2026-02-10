@@ -19,17 +19,23 @@ public class pessoa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int ID;
+    @Column(name = "pes_id")
+    private int id;
 
-    private String pes_nome;
+    @Column(name = "pes_nome")
+    private String nome;
 
-    private LocalDate pes_data_nascimento;
+    @Column(name = "pes_data_nascimento")
+    private LocalDate dataDeNascimento;
 
-    private String pes_sexo;
+    @Column(name = "pes_sexo")
+    private String sexo;
 
-    private String pes_mae;
+    @Column(name = "pes_mae")
+    private String mae;
 
-    private String pes_pai;
+    @Column(name = "pes_pai")
+    private String pai;
 
 
 }

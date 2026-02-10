@@ -15,10 +15,18 @@ import lombok.Setter;
 public class pessoa_endereco {
 
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
 
     @ManyToOne
     @JoinColumn(name = "pes_id", nullable = false)
     private pessoa pessoa;
+
+    @ManyToOne
+    @JoinColumn(name = "end_id", nullable = false)
+    private endereco endereco;
 
 
 }
