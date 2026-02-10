@@ -11,22 +11,19 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "pessoa_endereco")
-public class pessoa_endereco {
-
+@Table(name = "cidade")
+public class Cidade {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "cid_id")
     private int id;
 
+    @Column(name = "cid_nome")
+    private String nome;
 
-    @ManyToOne
-    @JoinColumn(name = "pes_id", nullable = false)
-    private pessoa pessoa;
-
-    @ManyToOne
-    @JoinColumn(name = "end_id", nullable = false)
-    private endereco endereco;
+    @Column(name = "cid_uf")
+    private String uf;
 
 
 }

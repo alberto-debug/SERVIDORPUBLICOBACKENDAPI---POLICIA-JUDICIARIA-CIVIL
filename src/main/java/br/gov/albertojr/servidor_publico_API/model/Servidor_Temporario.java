@@ -6,10 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.CollectionId;
-import org.springframework.jdbc.core.metadata.HsqlTableMetaDataProvider;
 
-import javax.xml.crypto.dsig.spec.XSLTTransformParameterSpec;
 import java.time.LocalDate;
 
 @Entity
@@ -18,7 +15,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "servidor_temporario")
-public class servidor_temporario {
+public class Servidor_Temporario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +23,7 @@ public class servidor_temporario {
 
     @ManyToOne
     @JoinColumn(name = "pes_id", nullable = false, referencedColumnName = "pes_id")
-    private pessoa pessoa;
+    private Pessoa pessoa;
 
     @Column(name = "st_data-admissao")
     private LocalDate stDataAdmissao;

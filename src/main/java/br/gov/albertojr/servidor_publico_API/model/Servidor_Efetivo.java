@@ -1,5 +1,6 @@
 package br.gov.albertojr.servidor_publico_API.model;
 
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,20 +12,17 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "unidade")
-public class unidade {
+@Table(name = "servidor_efetivo")
+public class Servidor_Efetivo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "unid_id")
     private int id;
 
-    @Column(name = "unid_nome")
-    private String nome;
+    @ManyToOne
+    @JoinColumn(name = "pes_id", nullable = false)
+    private Pessoa pessoa;
 
-
-    @Column(name = "unid_sigla")
-    private String sigla;
-
-
+    @Column(name = "se_matricula")
+    private String matricula;
 }

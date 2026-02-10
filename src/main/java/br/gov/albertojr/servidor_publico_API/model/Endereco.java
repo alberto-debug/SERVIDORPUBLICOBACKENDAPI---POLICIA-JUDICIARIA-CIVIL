@@ -12,7 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "endereco")
-public class endereco {
+public class Endereco {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,6 +30,10 @@ public class endereco {
 
     @Column(name = "end_bairro")
     private String bairro;
+
+    @ManyToOne
+    @JoinColumn(name = "cid_id", nullable = false)
+    private Cidade cidade;
 
 
 }

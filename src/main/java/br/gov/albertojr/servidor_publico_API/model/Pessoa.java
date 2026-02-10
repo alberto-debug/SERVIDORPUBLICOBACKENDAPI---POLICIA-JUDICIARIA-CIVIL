@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
 
@@ -15,7 +14,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "pessoa")
-public class pessoa {
+public class Pessoa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
