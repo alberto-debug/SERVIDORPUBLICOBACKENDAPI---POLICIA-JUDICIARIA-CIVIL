@@ -8,7 +8,6 @@ import org.springframework.context.event.EventListener;
 @SpringBootApplication
 public class ServidorPublicoApiApplication {
 
-
 	public static void main(String[] args) {
 		SpringApplication.run(ServidorPublicoApiApplication.class, args);
 	}
