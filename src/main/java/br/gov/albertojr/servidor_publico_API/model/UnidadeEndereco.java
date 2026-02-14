@@ -6,41 +6,24 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
-
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "lotacao")
-public class Lotacao {
+@Table(name = "unidade_endereco")
+public class UnidadeEndereco {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "lot_id")
+    @Column(name = "ue_id")
     private int id;
-
-
-    @ManyToOne
-    @JoinColumn(name = "pes_id", nullable = false)
-    private Pessoa pessoa;
-
 
     @ManyToOne
     @JoinColumn(name = "unid_id", nullable = false)
     private Unidade unidade;
 
-    @Column(name = "lot_data_lotacao")
-    private LocalDate dataLotacao;
-
-    @Column(name = "lot_data_remocao")
-    private LocalDate dataRemocao;
-
-    @Column(name = "lot_portaria")
-    private String portaria;
-
-
-
-
+    @ManyToOne
+    @JoinColumn(name = "end_id", nullable = false)
+    private Endereco endereco;
 }

@@ -13,24 +13,21 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "foto_pessoa")
-public class Foto_Pessoa {
+@Table(name = "servidor_temporario")
+public class ServidorTemporario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "fp_id")
+    @Column(name = "st_id")
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "pes_id", nullable = false)
+    @JoinColumn(name = "pes_id", nullable = false, referencedColumnName = "pes_id")
     private Pessoa pessoa;
 
-    @Column(name = "fp_data")
-    private LocalDate data;
+    @Column(name = "st_data_admissao")
+    private LocalDate dataAdmissao;
 
-    @Column(name = "fp_bucket")
-    private String bucket;
-
-    @Column(name = "fp_hash")
-    private String hash;
+    @Column(name = "st_data_demissao")
+    private LocalDate dataDemissao;
 }
