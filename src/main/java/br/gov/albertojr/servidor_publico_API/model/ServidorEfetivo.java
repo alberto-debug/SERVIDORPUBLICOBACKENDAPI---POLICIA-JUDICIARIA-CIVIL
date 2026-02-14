@@ -1,30 +1,28 @@
 package br.gov.albertojr.servidor_publico_API.model;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.stereotype.Service;
 
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "unidade_endereco")
-public class Unidade_endereco {
+@Table(name = "servidor_efetivo")
+public class ServidorEfetivo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "se_id")
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "unid_id", nullable = false)
-    private Unidade unidade;
+    @JoinColumn(name = "pes_id", nullable = false)
+    private Pessoa pessoa;
 
-    @ManyToOne
-    @JoinColumn(name = "end_id", nullable = false)
-    private Endereco endereco;
+    @Column(name = "se_matricula")
+    private String matricula;
 }

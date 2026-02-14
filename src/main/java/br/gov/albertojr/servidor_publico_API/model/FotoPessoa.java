@@ -6,27 +6,31 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "pessoa_endereco")
-public class Pessoa_Endereco {
-
+@Table(name = "foto_pessoa")
+public class FotoPessoa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "fp_id")
     private int id;
-
 
     @ManyToOne
     @JoinColumn(name = "pes_id", nullable = false)
     private Pessoa pessoa;
 
-    @ManyToOne
-    @JoinColumn(name = "end_id", nullable = false)
-    private Endereco endereco;
+    @Column(name = "fp_data")
+    private LocalDate data;
 
+    @Column(name = "fp_bucket")
+    private String bucket;
 
+    @Column(name = "fp_hash")
+    private String hash;
 }
