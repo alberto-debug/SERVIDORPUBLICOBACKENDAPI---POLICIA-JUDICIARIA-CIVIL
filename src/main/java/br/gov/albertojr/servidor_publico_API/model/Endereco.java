@@ -24,6 +24,7 @@ public class Endereco {
 
 
 
+
     @Column(name = "end_logradouro")
     private String logradouro;
 
