@@ -10,4 +10,6 @@ import java.util.Optional;
 public interface UnidadeRepository extends JpaRepository<Unidade, Integer> {
 
     Optional<Unidade> findById(int id);
+
+    public Unidade findByNome(String nome);
 }
