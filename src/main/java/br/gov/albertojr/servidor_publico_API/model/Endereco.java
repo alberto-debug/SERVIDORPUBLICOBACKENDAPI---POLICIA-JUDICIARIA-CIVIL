@@ -22,9 +22,6 @@ public class Endereco {
     @Column(name = "end_tipo_logradouro")
     private String tipoLogradouro;
 
-
-
-
     @Column(name = "end_logradouro")
     private String logradouro;
 
