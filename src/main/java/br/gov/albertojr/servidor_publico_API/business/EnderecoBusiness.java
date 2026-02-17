@@ -16,29 +16,29 @@ public class EnderecoBusiness {
     @Autowired
     private EnderecoRepository enderecoRepository;
 
-    public Endereco add(Endereco endereco) throws EntityAlreadyExistsException{
-
-        if (enderecoRepository.findByLogradouro(endereco.getLogradouro()).isPresent()){
-            throw new EntityAlreadyExistsException(endereco.getCidade() + " " + endereco.getLogradouro()+ " "
-
-            );
+    public Endereco add(Endereco endereco) throws EntityAlreadyExistsException {
+        if (enderecoRepository.findByLogradouro(endereco.getLogradouro()).isPresent()) {
+            throw new EntityAlreadyExistsException(endereco.getLogradouro());
         }
-
         return enderecoRepository.save(endereco);
     }
 
-    public Page<Endereco> findAll(Pageable pageable){
-
+    public Page<Endereco> findAll(Pageable pageable) {
         return enderecoRepository.findAll(pageable);
     }
 
-
-    public Endereco update(Endereco endereco) throws EntityDoesNotExistsException{
-        if (enderecoRepository.findById(endereco.getId()).isEmpty()){
+    public Endereco update(Endereco endereco) throws EntityDoesNotExistsException {
+        if (enderecoRepository.findById(endereco.getId()).isEmpty()) {
             throw new EntityDoesNotExistsException(endereco.getId());
         }
-
         return enderecoRepository.save(endereco);
+    }
+
+    public void delete(int id) throws EntityDoesNotExistsException {
+        if (enderecoRepository.findById(id).isEmpty()) {
+            throw new EntityDoesNotExistsException(id);
+        }
+        enderecoRepository.deleteById(id);
     }
 
 }
