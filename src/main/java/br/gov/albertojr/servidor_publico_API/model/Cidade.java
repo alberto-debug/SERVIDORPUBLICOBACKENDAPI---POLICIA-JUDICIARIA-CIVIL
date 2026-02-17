@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 @Entity
 @Getter
 @Setter
@@ -24,6 +25,7 @@ public class Cidade {
 
     @Column(name = "cid_uf")
     private String uf;
+
 
 
 }

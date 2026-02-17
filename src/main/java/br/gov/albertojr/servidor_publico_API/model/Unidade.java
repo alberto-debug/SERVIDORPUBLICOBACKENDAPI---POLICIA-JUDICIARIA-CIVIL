@@ -1,10 +1,9 @@
 package br.gov.albertojr.servidor_publico_API.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -25,6 +24,13 @@ public class Unidade {
 
     @Column(name = "unid_sigla")
     private String sigla;
+
+    @ManyToMany
+    @JoinTable(name = "unidade_endereco",
+            joinColumns = @JoinColumn(name = "unid_id") ,
+            inverseJoinColumns = @JoinColumn(name = "end_id")
+    )
+    private List<Endereco> enderecoList;
 
 
 }

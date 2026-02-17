@@ -1,10 +1,7 @@
 package br.gov.albertojr.servidor_publico_API.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Getter
@@ -12,6 +9,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "endereco")
+@ToString
 public class Endereco {
 
     @Id
@@ -21,9 +19,6 @@ public class Endereco {
 
     @Column(name = "end_tipo_logradouro")
     private String tipoLogradouro;
-
-
-
 
     @Column(name = "end_logradouro")
     private String logradouro;

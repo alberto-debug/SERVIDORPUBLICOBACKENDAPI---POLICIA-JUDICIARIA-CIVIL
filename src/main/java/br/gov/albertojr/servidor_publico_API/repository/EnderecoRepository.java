@@ -14,5 +14,7 @@ public interface EnderecoRepository extends JpaRepository<Endereco, Integer> {
 
     Optional<Endereco> findById(int id);
 
+    Optional<Endereco> findByLogradouro(String nome);
+
 
 }
