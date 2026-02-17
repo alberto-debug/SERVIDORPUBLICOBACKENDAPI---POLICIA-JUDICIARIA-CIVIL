@@ -10,5 +10,8 @@ import java.util.Optional;
 @Repository
 public interface CidadeRepository extends JpaRepository<Cidade, Integer> {
 
-    List<Cidade> findById(int id);
+    Optional<Cidade> findById(int id);
+    Optional<Cidade> findByNomeAndUf(String nome, String uf);
+
+    public Optional<Cidade> findByNome(String nome);
 }
