@@ -34,12 +34,6 @@ public class CidadeBusiness {
         return cidadeRepository.save(cidade);
     }
 
-    public void delete(int id) throws EntityDoesNotExistsException {
-        if (cidadeRepository.findById(id).isEmpty()) {
-            throw new EntityDoesNotExistsException(id);
-        }
-        cidadeRepository.deleteById(id);
-    }
 
 
 }
