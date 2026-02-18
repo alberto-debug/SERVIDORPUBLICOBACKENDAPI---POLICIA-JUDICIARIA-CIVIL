@@ -41,12 +41,7 @@ public class UnidadeBusiness {
         return unidadeRepository.findAll(pageable);
     }
 
-    public void delete(int id) throws EntityDoesNotExistsException {
-        if (unidadeRepository.findById(id).isEmpty()) {
-            throw new EntityDoesNotExistsException(id);
-        }
-        unidadeRepository.deleteById(id);
-    }
+
 
     public void verificarSeTodosOsEnderecosExistem(Unidade unidade) throws EntityDoesNotExistsException {
         for (Endereco endereco : unidade.getEnderecoList()) {

@@ -23,22 +23,18 @@ public class EnderecoBusiness {
         return enderecoRepository.save(endereco);
     }
 
-    public Page<Endereco> findAll(Pageable pageable) {
-        return enderecoRepository.findAll(pageable);
-    }
+public Page<Endereco> findAll(Pageable pageable){
 
-    public Endereco update(Endereco endereco) throws EntityDoesNotExistsException {
-        if (enderecoRepository.findById(endereco.getId()).isEmpty()) {
+        return enderecoRepository.findAll(pageable);
+}
+
+public Endereco update( Endereco endereco) throws EntityDoesNotExistsException{
+
+        if (enderecoRepository.findById(endereco.getId()).isEmpty()){
+
             throw new EntityDoesNotExistsException(endereco.getId());
         }
         return enderecoRepository.save(endereco);
-    }
-
-    public void delete(int id) throws EntityDoesNotExistsException {
-        if (enderecoRepository.findById(id).isEmpty()) {
-            throw new EntityDoesNotExistsException(id);
-        }
-        enderecoRepository.deleteById(id);
-    }
+}
 
 }
