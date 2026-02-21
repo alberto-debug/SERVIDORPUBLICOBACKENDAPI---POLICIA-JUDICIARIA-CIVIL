@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Service
 public class EnderecoBusiness {
@@ -28,13 +29,17 @@ public Page<Endereco> findAll(Pageable pageable){
         return enderecoRepository.findAll(pageable);
 }
 
-public Endereco update( Endereco endereco) throws EntityDoesNotExistsException{
+public Endereco update(int id, Endereco endereco) throws EntityDoesNotExistsException{
 
-        if (enderecoRepository.findById(endereco.getId()).isEmpty()){
+        Endereco update = enderecoRepository.findById(id)
+                .orElseThrow(()-> new EntityDoesNotExistsException(id));
 
-            throw new EntityDoesNotExistsException(endereco.getId());
-        }
-        return enderecoRepository.save(endereco);
+
+        update.setLogradouro(endereco.getLogradouro());
+        update.setNumero(endereco.getNumero());
+        update.setBairro(endereco.getBairro());
+
+        return  enderecoRepository.save(update);
 }
 
 }
