@@ -27,11 +27,20 @@ public class CidadeBusiness {
         return cidadeRepository.findAll(pageable);
     }
 
-    public Cidade update(Cidade cidade) throws EntityDoesNotExistsException {
-        if (cidadeRepository.findById(cidade.getId()).isEmpty()) {
-            throw new EntityDoesNotExistsException(cidade.getId());
-        }
-        return cidadeRepository.save(cidade);
+    public Cidade findById(int id){
+        return cidadeRepository.findById(id)
+                .orElseThrow(()-> new RuntimeException("Cidade not found with id: " + id));
+    }
+
+    public Cidade update(int id, Cidade cidade) throws EntityDoesNotExistsException {
+
+        Cidade existing = cidadeRepository.findById(id)
+                .orElseThrow(()-> new EntityDoesNotExistsException(id));
+
+        existing.setNome(cidade.getNome());
+        existing.setUf(cidade.getUf());
+
+        return cidadeRepository.save(existing);
     }
 
 

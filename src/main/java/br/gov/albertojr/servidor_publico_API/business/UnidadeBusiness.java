@@ -29,16 +29,26 @@ public class UnidadeBusiness {
         return unidadeRepository.save(unidade);
     }
 
-    public Unidade update(Unidade unidade) throws EntityDoesNotExistsException {
-        if (unidadeRepository.findById(unidade.getId()).isEmpty()) {
-            throw new EntityDoesNotExistsException(unidade.getId());
-        }
+    public Unidade update( int id,Unidade unidade) throws EntityDoesNotExistsException {
+
+        Unidade update = unidadeRepository.findById(id)
+                .orElseThrow(() -> new EntityDoesNotExistsException(id));
+
+
         verificarSeTodosOsEnderecosExistem(unidade);
-        return unidadeRepository.save(unidade);
+
+        return unidadeRepository.save(update);
     }
 
     public Page<Unidade> findAll(Pageable pageable){
         return unidadeRepository.findAll(pageable);
+    }
+
+    public Unidade findById(int id){
+
+        return unidadeRepository.findById(id)
+                .orElseThrow(()-> new RuntimeException("Unidade not found with id: " + id));
+
     }
 
 
