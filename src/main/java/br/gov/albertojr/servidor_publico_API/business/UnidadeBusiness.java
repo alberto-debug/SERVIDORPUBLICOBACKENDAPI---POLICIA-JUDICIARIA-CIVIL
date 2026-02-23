@@ -1,7 +1,8 @@
 package br.gov.albertojr.servidor_publico_API.business;
 
-import br.gov.albertojr.servidor_publico_API.exceptoion.EntityAlreadyExistsException;
-import br.gov.albertojr.servidor_publico_API.exceptoion.EntityDoesNotExistsException;
+import br.gov.albertojr.servidor_publico_API.exception.EntityAlreadyExistsException;
+import br.gov.albertojr.servidor_publico_API.exception.EntityDoesNotExistsException;
+import br.gov.albertojr.servidor_publico_API.model.Cidade;
 import br.gov.albertojr.servidor_publico_API.model.Endereco;
 import br.gov.albertojr.servidor_publico_API.model.Unidade;
 import br.gov.albertojr.servidor_publico_API.repository.EnderecoRepository;
@@ -11,53 +12,46 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UnidadeBusiness {
 
     @Autowired
     private UnidadeRepository unidadeRepository;
 
-    @Autowired
-    private EnderecoRepository enderecoRepository;
+    public Unidade add(Unidade unidade){
 
-
-    public Unidade add(Unidade unidade) throws EntityAlreadyExistsException {
-        if (unidadeRepository.findById(unidade.getId()).isPresent()) {
-            throw new EntityAlreadyExistsException(unidade.getNome());
+        if (unidadeRepository.existsById(unidade.getId())){
+            throw  new EntityAlreadyExistsException(unidade.getId()+ " " + unidade.getNome());
         }
-        verificarSeTodosOsEnderecosExistem(unidade);
+
         return unidadeRepository.save(unidade);
     }
 
-    public Unidade update( int id,Unidade unidade) throws EntityDoesNotExistsException {
-
-        Unidade update = unidadeRepository.findById(id)
-                .orElseThrow(() -> new EntityDoesNotExistsException(id));
-
-
-        verificarSeTodosOsEnderecosExistem(unidade);
-
-        return unidadeRepository.save(update);
-    }
-
     public Page<Unidade> findAll(Pageable pageable){
+
         return unidadeRepository.findAll(pageable);
     }
 
     public Unidade findById(int id){
 
         return unidadeRepository.findById(id)
-                .orElseThrow(()-> new RuntimeException("Unidade not found with id: " + id));
-
+                .orElseThrow(()-> new EntityDoesNotExistsException(id));
     }
 
-
-
-    public void verificarSeTodosOsEnderecosExistem(Unidade unidade) throws EntityDoesNotExistsException {
-        for (Endereco endereco : unidade.getEnderecoList()) {
-            if (enderecoRepository.findById(endereco.getId()).isEmpty()) {
-                throw new EntityDoesNotExistsException(endereco.getId());
-            }
+    public Unidade update(int id, Unidade unidade){
+        if (!unidadeRepository.existsById(id)){
+            throw new EntityDoesNotExistsException(id);
         }
+
+        unidade.setId(id);
+        return unidadeRepository.save(unidade);
     }
+
+
+
+
+
+
 }

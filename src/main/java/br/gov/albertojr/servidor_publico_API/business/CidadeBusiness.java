@@ -37,7 +37,7 @@ public class CidadeBusiness {
     public Cidade findById(int id){
 
         return cidadeRepository.findById(id)
-                .orElseThrow(()-> new EntityNotFoundException(String.valueOf(id)));
+                .orElseThrow(()-> new EntityDoesNotExistsException(id));
     }
 
 
